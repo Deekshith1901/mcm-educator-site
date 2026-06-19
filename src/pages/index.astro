@@ -1,6 +1,6 @@
 ---
 import Navbar from '../components/Navbar.astro';
-import Layout from '../layout/layout.astro';
+import Layout from '../layout/Layout.astro';
 ---
 
 <Layout title="Mamidi Chandra Mohan | Educator">
@@ -154,7 +154,7 @@ import Layout from '../layout/layout.astro';
 			<h2 class="text-4xl font-bold text-center text-white mb-4">Get in Touch</h2>
 			<p class="text-center text-slate-400 mb-12">Available for academic consulting, workshops, or mentorship inquiries.</p>
 			
-			<form id="contact-form" name="contact" method="POST" data-netlify="true" class="space-y-6">
+			<form id="contact-form" name="contact" method="POST" action="/" data-netlify="true" class="space-y-6">
 				<input type="hidden" name="form-name" value="contact" />
 				<div class="grid md:grid-cols-2 gap-6">
 					<input type="text" name="name" placeholder="Your Name" required class="w-full bg-slate-900 border border-slate-700 p-4 rounded-lg focus:outline-none focus:border-amber-400 text-white" />
@@ -175,33 +175,4 @@ import Layout from '../layout/layout.astro';
 	<footer class="py-10 text-center text-slate-600 text-sm">
 		<p>&copy; 2026 MAMIDI CHANDRA MOHAN. Built with Love.</p>
 	</footer>
-
-	<script is:inline>
-		const form = document.getElementById('contact-form');
-		const status = document.getElementById('form-status');
-		if (form && status) {
-			form.addEventListener('submit', async (event) => {
-				event.preventDefault();
-				const formData = new FormData(form);
-				try {
-					const response = await fetch('/', {
-						method: 'POST',
-						body: formData,
-					});
-					if (response.ok) {
-						status.textContent = 'Message sent successfully.';
-						status.className = 'mt-4 rounded-lg border border-emerald-400 bg-emerald-500/10 p-4 text-center text-sm text-emerald-200';
-						form.reset();
-						alert('Message sent successfully.');
-					} else {
-						throw new Error('Network response not ok');
-					}
-				} catch (error) {
-					status.textContent = 'Sorry, message not sent. Please try again.';
-					status.className = 'mt-4 rounded-lg border border-red-400 bg-red-500/10 p-4 text-center text-sm text-red-200';
-					console.error(error);
-				}
-			});
-		}
-	</script>
 </Layout>
